@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="reports_assets_backend" name="Experts product styles" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                    <link rel="stylesheet" type="text/scss" href="/experts_product_extend/static/src/css/styles.css" />
+            </xpath>
+        </template>
+    </data>
+</odoo>

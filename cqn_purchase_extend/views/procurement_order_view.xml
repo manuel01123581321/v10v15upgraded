@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_procuremetn_form_inherit">
+            <field name="name">view.procurement.form.inherit</field>
+            <field name="model">procurement.order</field>
+            <field name="inherit_id" ref="procurement.procurement_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='cancel']" position="after">
+                    <button name="force_cancel" states="exception,confirmed,running" string="Forzar cancelación" type="object" confirm="Esta acción forzará la cancelación del abastecimiento, presione aceptar para continuar."/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

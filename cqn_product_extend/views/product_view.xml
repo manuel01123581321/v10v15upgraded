@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="temperature_field_form_inherited">
+            <field name="name">temperature.field.form.inherited</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group_lots_and_weight']" position='inside'>
+                    <field name="edit_temperature" invisible="1"/>
+                    <field name="product_temperature_id" attrs="{'invisible':[('edit_temperature','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="pt_form_view_procurement_button_inh">
+            <field name="name">pt.form.view.procurement.button.inh</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock_available_unreserved.product_template_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_open_quants_unreserved']" position='replace'>
+                    <button type="object" name="action_open_quants_unreserved" attrs="{'invisible':[('type', '!=', 'product')]}" class="oe_stat_button" icon="fa-building-o">
+                        <field name="qty_available_only_stock_location" widget="statinfo" string="Disponible"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="temperature_field_form_inherited">
+            <field name="name">temperature.field.form.inherited</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.view_template_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group_lots_and_weight']" position='inside'>
+                    <field name="edit_temperature" invisible="1"/>
+                    <field name="product_temperature_id" attrs="{'invisible':[('edit_temperature','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="temperature_field_tree_inh">
+            <field name="name">temperature.field.line.tree.inh</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="product_temperature_id" />
+                    <!-- <field name="brand_id" /> -->
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_line_form_inherited">
+            <field name="name">sale.line.form.inherited</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.view_order_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='price_subtotal']" position="before">
+                    <field name="price_unit"/>
+                    <field name="discount"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_shop_all,access.sale.shop.all,model_sale_shop,,1,1,1,1
+access_sale_shop_warehouse_all,access.sale.shop.warehose.all,model_sale_shop_warehouse,,1,1,1,1
+access_substitute_products,access.substitute.products,model_substitute_products,,1,1,1,1

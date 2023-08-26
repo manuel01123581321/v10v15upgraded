@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+"access_product_brand","product brand all","model_product_brand",,1,1,1,1
+access_product_group,access_product_group,model_product_group,,1,1,1,1
+access_product_sub_group,access_product_sub_group,model_product_sub_group,,1,1,1,1

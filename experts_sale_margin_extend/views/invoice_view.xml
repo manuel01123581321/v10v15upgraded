@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       
+        <record model="ir.ui.view" id="margin_in_invoice_tree">
+            <field name="name">margin.in.invoice.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_out_invoice_tree"/>
+            <field name="arch" type="xml" >
+                <field name="invoice_origin" position="after">
+                    <field name="cost_in_invoice" attrs="{'invisible': [('move_type','=','in_invoice')]}" widget="monetary" groups="experts_sale_margin_extend.group_margin_invoice"/>
+                    <field name="margin_in_invoice" attrs="{'invisible': [('move_type','=','in_invoice')]}" widget="monetary" groups="experts_sale_margin_extend.group_margin_invoice"/>
+                    <field name="margin_percent" attrs="{'invisible': [('move_type','=','in_invoice')]}" widget="progressbar" groups="experts_sale_margin_extend.group_margin_invoice"/>
+                </field>
+   <!-- El campo amount_total_signed no esta en la vista invoice_tree Revisar en que vista esta para hacerlo correctamente 
+                <xpath expr="//tree//field[@name='amount_total_signed']" position="replace">
+                    <field name="amount_total" widget="monetary"/>
+                </xpath> -->
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="margin_in_invoice_form">
+            <field name="name">margin.in.invoice.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml" >
+                <xpath expr="//form/sheet/notebook/page/group" position="after">
+                    <group name="margin_invoice">
+                            <field name="cost_in_invoice" attrs="{'invisible': [('move_type','=','in_invoice')]}" widget="monetary" groups="experts_sale_margin_extend.group_margin_invoice"/>
+                            <field name="margin_in_invoice" attrs="{'invisible': [('move_type','=','in_invoice')]}" widget="monetary" groups="experts_sale_margin_extend.group_margin_invoice"/>
+                            <field name="margin_percent" attrs="{'invisible': [('move_type','=','in_invoice')]}" widget="progressbar" groups="experts_sale_margin_extend.group_margin_invoice"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--
+        <record model="ir.ui.view" id="account_invoice_form_inherit">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="type">form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="experts_account_invoice_cfdi_33.account_invoice_33_form_inh" />
+            <field name="arch" type="xml">
+                <button name="create_cfdi_quick" position="attributes">
+                    <attribute name="attrs">{'invisible':['|',('state','not in', ('open','paid')),('sign','=',True)]}</attribute>
+                </button>
+            </field>
+        </record>
+		-->
+
+        <record id="invoice_form_inherit_sale_shop" model="ir.ui.view">
+            <field name="name">account.move.form.sale.shop</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//page[@name='other_info']/group/group/field[@name='invoice_origin']" position="after">
+                    <field name="shop_id" />
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</odoo>

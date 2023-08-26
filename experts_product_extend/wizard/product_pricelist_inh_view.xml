@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="pricelist_wizard_form_inherited">
+            <field name="name">pricelist.wizard.form.inherited</field>
+            <field name="model">product.price_list</field>
+            <field name="inherit_id" ref="product.view_product_price_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='price_list']" position="before">
+                    <field name="show_product_cost"/>
+                </xpath>
+                <xpath expr="//button[@name='print_report']" position="after">
+                    <button name="export_xls" string="Exportar a XLS" type="object" class="oe_highlight"/>
+                    <field name="download_file" filename="datas_fname" class="oe_edit_only" readonly="True" style="float: right;"/>
+                    <field name="datas_fname" invisible="1" class="oe_inline oe_right"/>
+                </xpath>
+<!--
+                <xpath expr="//field[@name='qty5']" position="after">
+                    <field name="file" invisible="True"/>
+                    <field name="datas_fname" invisible="True" />
+                </xpath>
+-->
+            </field>
+        </record>
+
+        <template id="report_pricelist" inherit_id="product.report_pricelist">
+            <table position="replace">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>
+                                <strong>Descripción</strong>
+                            </th>
+                            <t t-foreach="data['quantities']" t-as="quantity">
+                                <th><strong t-esc="'%s units' % quantity"/></th>
+                            </t>
+                            <t t-if="data['show_product_cost_report']">
+                                <th><strong>Costo</strong></th>
+                                <th><strong>Proveedor</strong></th>
+                                <th><strong>Precio proveedor</strong></th>
+                            </t>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="data['categories_data']" t-as="categ_data">
+                            <tr>
+                                <td colspan="100">
+                                    <strong t-esc="categ_data['category'].name"/>
+                                </td>
+                            </tr>
+                            <tr t-foreach="categ_data['products']" t-as="product">
+                                <td>
+                                    <t t-if="product.code">
+                                        [<span t-esc="product.code"/>]
+                                    </t>
+                                    <span t-esc="product.name"/>
+                                </td>
+                                <t t-foreach="data['quantities']" t-as="quantity">
+                                    <td><strong t-esc="categ_data['prices'][product.id][quantity]"
+                                                t-esc-options="{
+                                                    'widget': 'monetary',
+                                                    'display_currency': data['pricelist'].currency_id}"/>
+                                    </td>
+                                </t>
+                                <t t-if="data['show_product_cost_report']">
+                                    <td><strong t-esc="product.standard_price"
+                                                t-esc-options="{
+                                                    'widget': 'monetary',
+                                                    'display_currency': data['pricelist'].currency_id}"/></td>
+
+                                    <t t-if="get_supplier_price(product.product_tmpl_id.id)">
+                                            <td>
+                                                <table class="table-condensed" style="font-size:12px">
+                                                    <t t-foreach="get_supplier_price(product.product_tmpl_id.id)" t-as="line">
+                                                        <tr>
+                                                            <td>
+                                                                <span t-esc="line['supplier_name']"/>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <table class="table-condensed">
+                                                    <t t-foreach="get_supplier_price(product.product_tmpl_id.id)" t-as="line">
+                                                        <tr>
+                                                            <td>
+                                                                <span t-esc="line['price']"
+                                                                    t-esc-options="{
+                                                                    'widget': 'monetary',
+                                                                    'display_currency': data['pricelist'].currency_id}"/>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </table>
+                                            </td>
+                                    </t>
+                                    <t t-if="not get_supplier_price(product.product_tmpl_id.id)">
+                                        <td> - </td> <td> - </td>
+                                    </t>
+                                </t>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </table>
+        </template>
+    </data>
+</odoo>

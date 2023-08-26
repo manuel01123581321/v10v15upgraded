@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.module.category" id="module_category_experts_product">
+            <field name="name">Productos</field>
+            <field name="sequence">101</field>
+        </record>
+
+        <record model="ir.module.category" id="module_category_wallet">
+            <field name="name">Punto de Venta</field>
+            <field name="sequence">102</field>
+        </record>
+
+        <record model="ir.module.category" id="module_category_experts_picking">
+            <field name="name">Almacenes</field>
+            <field name="sequence">103</field>
+        </record>
+
+        <record model="ir.module.category" id="module_category_pos_layaway">
+            <field name="name">Apartados</field>
+            <field name="sequence">104</field>
+        </record>
+
+        <record model="ir.module.category" id="module_category_experts_partner">
+            <field name="name">Clientes</field>
+            <field name="sequence">105</field>
+        </record>
+
+        <record model="ir.module.category" id="module_category_experts_sales">
+            <field name="name">Ventas a mayoreo</field>
+            <field name="sequence">106</field>
+        </record>
+
+        <record model="ir.module.category" id="module_category_experts_purchases">
+            <field name="name">Compras</field>
+            <field name="sequence">107</field>
+        </record>
+
+        <record model="ir.module.category" id="module_category_experts_account">
+            <field name="name">Contabilidad</field>
+            <field name="sequence">108</field>
+        </record>
+
+        <record model="ir.module.category" id="module_category_experts_complaints">
+            <field name="name">Control de quejas</field>
+            <field name="sequence">109</field>
+        </record>
+    </data>
+</openerp>

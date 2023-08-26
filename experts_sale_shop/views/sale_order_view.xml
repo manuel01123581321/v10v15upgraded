@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="sale_order_form_inherit_id" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="shop_id" options="{'no_create':True, 'no_open': True}"/>
+                     <!--<field name="forma_pago_id" options="{'no_create':True, 'no_open': True}"/>
+                    <field name="met_pago_id" options="{'no_create':True, 'no_open': True}"/>
+					-->
+                </xpath>
+              <!--   <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="acc_payment" options="{'no_create':True, 'no_open': True}"/>
+                </xpath> -->
+            </field>
+        </record>
+
+        <record id="view_order_form_inherit_sale_stock_inherit" model="ir.ui.view">
+            <field name="name">view.order.form.inherit.sale.stock.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='warehouse_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="before">
+                    <field name="qty_available" readonly="True" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='qty_available']" position="after">
+                    <field name="substitute_ids" options="{'no_create': True, 'no_open':True}" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

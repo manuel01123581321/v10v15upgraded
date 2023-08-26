@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Main menu -->
+        <menuitem id="main_new_object_menu" name="New object" />
+
+        <!-- new_object_tree_view -->
+        <record id="product_temperature_tree_view" model="ir.ui.view">
+            <field name="name">product.temperature.tree.view</field>
+            <field name="model">product.temperature</field>
+            <field name="arch" type="xml">
+                <tree string="Temperaturas de producto" editable="bottom">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- action_create_new_module -->
+        <record id="action_create_product_temperature" model="ir.actions.act_window">
+            <field name="name">Temperaturas de producto</field>
+            <field name="res_model">product.temperature</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="product_temperature_tree_view"/>
+        </record>
+
+        <!-- Menues -->
+        <menuitem id="action_create_product_temperature_id" name="Catálogo de temperaturas" parent="stock.menu_stock_config_settings" sequence="100"
+        action="action_create_product_temperature" />
+
+    </data>
+</openerp>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- view_sale_shop_form -->
+        <record id="view_sale_shop_form" model="ir.ui.view">
+            <field name="name">view.sale.shop.form</field>
+            <field name="model">sale.shop</field>
+            <field name="arch" type="xml">
+                <form string="Tiendas">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="sequence_id"/>
+                        <field name="fiscal_position_id" options="{'no_create': True}"/>
+                    </group>
+                    <notebook>
+                        <page string="Almacenes">
+                            <field name="ware_house_ids" nolabel="1">
+                                <tree editable="botttom" string="Almacenes">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="warehouse_id" options="{'no_create': True}"/>
+                                    <field name="location_dest_id" options="{'no_create': True}"/>
+                                    <field name="shop_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Usuarios">
+                            <field name="users_ids" nolabel="1" />
+                        </page>
+                        <page string="Configuración de tienda">
+                            <group string="Configuración de venta a mayoreo" name="config_sale">
+                                <field name="create_auto_invoice"/>
+                                <field name="sell_without_stock"/>
+                                <field name="automatic_pickings"/>
+                            </group>
+                            <group string="Diarios de venta" name="journal_sales">
+                                <field name="invoice_journal_id"/>
+                                <field name="remission_journal_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <!-- view_sale_shop_tree -->
+        <record id="view_sale_shop_tree" model="ir.ui.view">
+            <field name="name">view.sale.shop.tree</field>
+            <field name="model">sale.shop</field>
+            <field name="arch" type="xml">
+                <tree string="Registros de tiendas" >
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_sale_shop" model="ir.actions.act_window">
+            <field name="name">Configurar</field>
+            <field name="res_model">sale.shop</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_sale_shop_tree"/>
+        </record>
+        <menuitem id="main_sale_shop_menu" name="Tiendas" parent="base.menu_administration" sequence="6" groups="experts_sale_shop.sale_shop_group"/>
+        <menuitem id="menu_sale_shop" parent="main_sale_shop_menu" action="action_sale_shop" sequence="1" />
+
+    </data>
+</openerp>

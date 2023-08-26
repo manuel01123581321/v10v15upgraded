@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="sale_order_line_form_inherited">
+            <field name="name">sale.order.line.form.inherited</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <button name="get_lots" string="Lotes" type="object"/>
+                    <field name="notes_line"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[2]" position="after">
+                    <page string='Notas para almacén'>
+                        <field name="picking_notes"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

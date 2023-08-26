@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- sale_order_lots_wizard_view-->
+        <record id="sale_order_lots_wizard_id" model="ir.ui.view">
+            <field name="name">sale_order_lots_wizard_view</field>
+            <field name="model">sale.order.lots.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Lotes de producto por almacén de venta">
+                    <group >
+                        <field name="product_id" readonly="1"/>
+                        <field name="qty_available" readonly="1"/>
+                        <field name="qty_reserved" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="lots_ids" nolabel="1">
+                            <tree create="false" delete="false">
+                                <field name="lot_id" readonly="1"/>
+                                <field name="qty" readonly="1"/>
+                                <field name="expiry_date" readonly="1"/>
+                                <field name="location_id" readonly="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button string="Aceptar" special="cancel" class="btn-default"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

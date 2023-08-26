@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="res.groups" id="group_to_invoiced_sale">
+            <field name="name">Pasar a facturado ordenes de venta</field>
+            <field name="category_id" ref="experts_groups.module_category_experts_sales"/>
+        </record>
+    </data>
+</odoo>

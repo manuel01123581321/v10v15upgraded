@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record id="car0" model="odoo_model_advanced.car">
+            <field name="name">Audi A4</field>
+            <field name="number_plate">7789-HJK</field>
+            <field name="cv">95</field>
+            <field name="fuel_litres">75</field>
+        </record>
+
+        <record id="car1" model="odoo_model_advanced.car">
+            <field name="name">Renault Clio</field>
+            <field name="number_plate">5189-HHK</field>
+            <field name="cv">136</field>
+            <field name="fuel_litres">16</field>
+        </record>
+
+        <record id="car2" model="odoo_model_advanced.car">
+            <field name="name">Honda Civic</field>
+            <field name="number_plate">1256-NJK</field>
+            <field name="cv">85</field>
+            <field name="fuel_litres">55</field>
+        </record>
+    </data>
+</odoo>

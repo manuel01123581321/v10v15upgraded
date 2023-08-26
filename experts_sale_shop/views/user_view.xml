@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_users_form_simple_modif_shop_inh" model="ir.ui.view">
+            <field name="name">view.users.form.simple.modif.shop.inh</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tz']" position="after">
+                    <field name="shop_id" options="{'no_create':True}" string="Sucursal actual"/>
+                    <field name="shop_ids" options="{'no_create':True}" widget="many2many_tags" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_users_form_inherit" model="ir.ui.view">
+            <field name="name">view.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <notebook position="before">
+                        <newline/>
+                        <group string="Sucursales permitidas">
+                            <field name="shop_id" options="{'no_create':True}"/>
+                            <field name="shop_ids" options="{'no_create':True}" widget="many2many_tags" />
+                        </group>
+                </notebook>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="prevent_product_alert_on_sale_res_company_form_inherited">
+            <field name="name">prevent.product.alert.on.sale.res.company.form.inherited</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="experts_groups.res_company_form_view_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='experts_groups_configurations']" position="inside">
+                    <group string="Impedir mensaje de advertencia en ventas">
+                        <group>
+                            <field name="prevent_product_exists_warning"/>
+                        </group>
+                    </group>
+                </xpath>
+        </field>
+        </record>
+    </data>
+</openerp>

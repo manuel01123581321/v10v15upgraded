@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="select_sale_advanced_wizard_id" model="ir.ui.view">
+            <field name="name">select.sale.advanced.wizard</field>
+            <field name="model">select.sale.advanced.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Anticipo" >
+                        <group >
+                            <field name="partner_id"/>
+                            <field name="sale_id" invisible="1"/>
+                        </group>
+                        <field name="invoice_advanced_line_ids" nolabel="1">
+                            <tree editable="bottom" delete="false" create="false">
+                                <field name="invoice_rel_id" options="{'no_open':True,'no_create':True}"/>
+                                <field name="amount" />
+                                <field name="amount_residual" />
+                                <field name="amount_applied" />
+                                <field name="currency_id" />
+                                <field name="selected" />
+                                <field name="wizard_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    <newline/>
+                    <footer>
+                        <button name="select_advance" string="Aceptar" type="object" class="oe_highlight"/>
+                        <button special="cancel" string="Cerrar" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

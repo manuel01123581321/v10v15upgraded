@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>          
+        <record model="res.groups" id="sale_shop_group">
+            <field name="name">Gestionar tiendas</field>
+            <field name="category_id" ref="experts_groups.module_category_experts_sales"/>
+        </record>
+    </data>
+</openerp>
